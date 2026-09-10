@@ -16,12 +16,12 @@
     scroll-behavior: smooth;
   }
 
-  /* ===== Фон ===== */
+  /* ===== Фон с картинкой ===== */
   .bg-image {
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: url('bg.jpg'); /* ← ваша картинка */
+    background-image: url('bg.jpg'); /* ← ваша картинка с горами */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -34,9 +34,9 @@
     z-index: -1;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.45) 0%,
-      rgba(0, 0, 0, 0.55) 50%,
-      rgba(0, 0, 0, 0.8) 100%
+      rgba(0, 0, 0, 0.35) 0%,
+      rgba(0, 0, 0, 0.45) 50%,
+      rgba(0, 0, 0, 0.75) 100%
     );
     pointer-events: none;
   }
@@ -197,8 +197,8 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 0 40px rgba(0, 229, 255, 0.45),
-                 0 0 80px rgba(255, 0, 230, 0.25);
+    text-shadow: 0 0 40px rgba(0, 229, 255, 0.55),
+                 0 0 80px rgba(255, 0, 230, 0.35);
     animation: gradientShift 6s linear infinite;
   }
 
@@ -206,9 +206,9 @@
     margin-top: 20px;
     font-size: clamp(0.8rem, 2vw, 1.05rem);
     letter-spacing: 2px;
-    color: rgba(255, 255, 255, 0.85);
-    text-shadow: 0 0 12px rgba(0, 0, 0, 0.9),
-                 0 0 20px rgba(0, 229, 255, 0.35);
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 0 12px rgba(0, 0, 0, 0.95),
+                 0 0 20px rgba(0, 229, 255, 0.4);
     font-style: italic;
   }
 
@@ -236,7 +236,7 @@
     font-size: 1rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    opacity: 0.85;
+    opacity: 0.9;
     text-shadow: 0 0 10px rgba(0,0,0,0.9);
     animation: bounce 2.2s infinite;
   }
@@ -255,13 +255,13 @@
     align-items: center;
     gap: 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     padding: 40px 50px;
     border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
     animation: fadeUp 1.2s ease both;
   }
 
@@ -286,7 +286,7 @@
   .download-subtitle {
     font-size: 0.85rem;
     letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.85);
     font-style: italic;
     max-width: 420px;
     line-height: 1.5;
@@ -345,7 +345,7 @@
     text-align: center;
     font-size: 0.95rem;
     letter-spacing: 2px;
-    color: rgba(255,255,255,0.85);
+    color: rgba(255,255,255,0.9);
     text-transform: uppercase;
     text-shadow: 0 0 10px rgba(0,0,0,0.9);
   }
@@ -592,13 +592,14 @@
         Это самая первая разработка в нашей компании — Змейка!
       </div>
 
-      <!-- ↓↓↓ ВОТ ТУТ ССЫЛКА НА ФАЙЛ ↓↓↓ -->
+      <!-- ↓↓↓ КНОПКА СКАЧАТЬ — ОТКРЫВАЕТ ССЫЛКУ ↓↓↓ -->
       <a class="btn-download"
-         href="snake.zip"
-         download>
+         href="https://example.com/file.zip"
+         target="_blank"
+         rel="noopener noreferrer">
         Скачать
       </a>
-      <!-- ↑↑↑ ВОТ ТУТ ССЫЛКА НА ФАЙЛ ↑↑↑ -->
+      <!-- ↑↑↑ замени https://example.com/file.zip на свою ссылку ↑↑↑ -->
 
     </div>
 
