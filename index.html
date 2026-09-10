@@ -16,7 +16,6 @@
     scroll-behavior: smooth;
   }
 
-  /* ===== СЛОЙ 1: закатное небо ===== */
   .bg-image {
     position: fixed;
     inset: 0;
@@ -34,7 +33,6 @@
     );
   }
 
-  /* ===== СЛОЙ 2: горы ===== */
   .bg-mountains {
     position: fixed;
     inset: 0;
@@ -88,7 +86,6 @@
     );
   }
 
-  /* ===== СЛОЙ 3: затемнение ===== */
   .overlay {
     position: fixed;
     inset: 0;
@@ -103,7 +100,6 @@
     pointer-events: none;
   }
 
-  /* ===== Бургер-меню ===== */
   .burger {
     position: fixed;
     top: 22px;
@@ -144,7 +140,6 @@
   .burger.active span:nth-child(2) { opacity: 0; }
   .burger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-  /* ===== Боковое меню ===== */
   .side-menu {
     position: fixed;
     top: 0;
@@ -236,7 +231,6 @@
 
   .menu-backdrop.show { opacity: 1; visibility: visible; }
 
-  /* ===== Первый экран ===== */
   .welcome {
     position: relative;
     display: flex;
@@ -313,7 +307,6 @@
     100% { background-position: 300% 50%; }
   }
 
-  /* ===== Контент ===== */
   .content {
     position: relative;
     display: flex;
@@ -322,7 +315,7 @@
     padding: 0 20px 40px;
   }
 
-  /* ===== НОВЫЙ ТЕКСТ ПРИ СКРОЛЛЕ ===== */
+  /* ===== ТЕКСТ ПРИ СКРОЛЛЕ ===== */
   .scroll-reveal {
     margin-top: 20vh;
     max-width: 720px;
@@ -379,7 +372,6 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  /* ===== Змейка + Дата в одну линию ===== */
   .download-header {
     display: flex;
     align-items: baseline;
@@ -465,7 +457,6 @@
                 0 0 50px rgba(255, 255, 255, 0.7);
   }
 
-  /* ===== Футер ===== */
   .footer {
     width: 100%;
     padding: 30px 0 40px;
@@ -487,7 +478,6 @@
     animation: gradientShift 5s linear infinite;
   }
 
-  /* ===== КЛИКЕР ===== */
   .game-modal {
     position: fixed;
     inset: 0;
@@ -715,7 +705,6 @@
 
   <div class="content">
 
-    <!-- ✅ НОВЫЙ ТЕКСТ, ПОЯВЛЯЕТСЯ ПРИ ПРОКРУТКЕ -->
     <div class="scroll-reveal" id="scrollReveal">
       Этот сайт был придуман командой FFM, и тут ты можешь следить за каждым новым приложением, которое выйдет!
       <span>Ну а пока советуем посмотреть наши первые игры!</span>
@@ -773,7 +762,6 @@
   </div>
 
 <script>
-  /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ТЕКСТА ПРИ СКРОЛЛЕ ===== */
   const scrollReveal = document.getElementById('scrollReveal');
 
   const observer = new IntersectionObserver((entries) => {
@@ -788,7 +776,6 @@
 
   observer.observe(scrollReveal);
 
-  /* ===== Бургер-меню ===== */
   const burger = document.getElementById('burger');
   const sideMenu = document.getElementById('sideMenu');
   const menuBackdrop = document.getElementById('menuBackdrop');
@@ -805,7 +792,6 @@
     menuBackdrop.classList.remove('show');
   });
 
-  /* ===== Игра "Кликер" ===== */
   const gameModal = document.getElementById('gameModal');
   const openGameBtn = document.getElementById('openGame');
   const closeGameBtn = document.getElementById('closeGame');
