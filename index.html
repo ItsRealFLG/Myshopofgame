@@ -21,7 +21,7 @@
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: url('bg.jpg');
+    background-image: url('bg.jpg'); /* ← картинка с горами */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -174,7 +174,7 @@
 
   .menu-backdrop.show { opacity: 1; visibility: visible; }
 
-  /* ===== Приветствие ===== */
+  /* ===== Приветствие (первый экран) ===== */
   .welcome {
     position: relative;
     display: flex;
@@ -212,6 +212,29 @@
     font-style: italic;
   }
 
+  /* ===== Пролистайте вниз (теперь прямо под заголовком) ===== */
+  .scroll-hint {
+    margin-top: 50px;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.9;
+    text-shadow: 0 0 12px rgba(0,0,0,0.95),
+                 0 0 20px rgba(0, 229, 255, 0.35);
+    animation: bounce 2.2s infinite;
+  }
+
+  .scroll-hint span {
+    display: block;
+    font-size: 1.8rem;
+    margin-top: 8px;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50%      { transform: translateY(14px); opacity: 1; }
+  }
+
   @keyframes welcomeIn {
     from { opacity: 0; transform: scale(0.85) translateY(30px); }
     to   { opacity: 1; transform: scale(1) translateY(0); }
@@ -231,25 +254,8 @@
     padding: 0 20px 40px;
   }
 
-  .scroll-hint {
-    margin-top: 30vh;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    opacity: 0.9;
-    text-shadow: 0 0 10px rgba(0,0,0,0.9);
-    animation: bounce 2.2s infinite;
-  }
-
-  .scroll-hint span { display: block; font-size: 1.8rem; margin-top: 8px; }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50%      { transform: translateY(14px); opacity: 1; }
-  }
-
   .download-section {
-    margin-top: 35vh;
+    margin-top: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -575,24 +581,26 @@
     </a>
   </aside>
 
+  <!-- ===== Первый экран: Добро пожаловать + Пролистайте вниз ===== -->
   <div class="welcome">
     <h1>Добро пожаловать!</h1>
     <p class="welcome-subtitle">Это наш магазин приложений — тут всё бесплатно!</p>
-  </div>
 
-  <div class="content">
     <div class="scroll-hint">
       Пролистайте вниз
       <span>↓</span>
     </div>
+  </div>
 
+  <!-- ===== Контент ===== -->
+  <div class="content">
     <div class="download-section">
       <div class="download-title">Змейка</div>
       <div class="download-subtitle">
         Это самая первая разработка в нашей компании — Змейка!
       </div>
 
-      <!-- ↓↓↓ КНОПКА — ПЕРЕХОДИТ ПО ССЫЛКЕ (НЕ СКАЧИВАЕТ) ↓↓↓ -->
+      <!-- ↓↓↓ КНОПКА — ПЕРЕХОДИТ ПО ССЫЛКЕ ↓↓↓ -->
       <a class="btn-download"
          href="https://example.com"
          target="_blank"
@@ -889,12 +897,4 @@
       const noiseGain = audioCtx.createGain();
       noiseGain.gain.value = 0.12;
       noise.connect(noiseGain);
-      noiseGain.connect(audioCtx.destination);
-      noise.start(finalTime + 0.3);
-    } catch (e) {
-      console.warn('Звук не воспроизведён:', e);
-    }
-  }
-</script>
-</body>
-</html>
+      noiseG
