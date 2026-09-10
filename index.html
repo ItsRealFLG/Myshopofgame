@@ -21,7 +21,7 @@
     position: fixed;
     inset: 0;
     z-index: -2;
-    background-image: url('bg.jpg'); /* ← картинка с горами */
+    background-image: url('bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -174,7 +174,7 @@
 
   .menu-backdrop.show { opacity: 1; visibility: visible; }
 
-  /* ===== Приветствие (первый экран) ===== */
+  /* ===== Первый экран: приветствие + пролистайте вниз ===== */
   .welcome {
     position: relative;
     display: flex;
@@ -212,10 +212,14 @@
     font-style: italic;
   }
 
-  /* ===== Пролистайте вниз (теперь прямо под заголовком) ===== */
+  /* ===== Пролистайте вниз (прямо на первом экране) ===== */
   .scroll-hint {
-    margin-top: 50px;
-    font-size: 1rem;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;      /* ← центрирует стрелку по горизонтали */
+    justify-content: center;
+    font-size: 0.9rem;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0.9;
@@ -224,15 +228,18 @@
     animation: bounce 2.2s infinite;
   }
 
-  .scroll-hint span {
+  .scroll-hint .arrow {
     display: block;
-    font-size: 1.8rem;
-    margin-top: 8px;
+    font-size: 2rem;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    line-height: 1;
   }
 
   @keyframes bounce {
     0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50%      { transform: translateY(14px); opacity: 1; }
+    50%      { transform: translateY(12px); opacity: 1; }
   }
 
   @keyframes welcomeIn {
@@ -581,14 +588,14 @@
     </a>
   </aside>
 
-  <!-- ===== Первый экран: Добро пожаловать + Пролистайте вниз ===== -->
+  <!-- ===== Первый экран ===== -->
   <div class="welcome">
     <h1>Добро пожаловать!</h1>
     <p class="welcome-subtitle">Это наш магазин приложений — тут всё бесплатно!</p>
 
     <div class="scroll-hint">
       Пролистайте вниз
-      <span>↓</span>
+      <span class="arrow">↓</span>
     </div>
   </div>
 
@@ -600,15 +607,12 @@
         Это самая первая разработка в нашей компании — Змейка!
       </div>
 
-      <!-- ↓↓↓ КНОПКА — ПЕРЕХОДИТ ПО ССЫЛКЕ ↓↓↓ -->
       <a class="btn-download"
          href="https://example.com"
          target="_blank"
          rel="noopener noreferrer">
         Скачать
       </a>
-      <!-- ↑↑↑ замени https://example.com на свою ссылку ↑↑↑ -->
-
     </div>
 
     <footer class="footer">
@@ -895,6 +899,4 @@
       const noise = audioCtx.createBufferSource();
       noise.buffer = noiseBuffer;
       const noiseGain = audioCtx.createGain();
-      noiseGain.gain.value = 0.12;
-      noise.connect(noiseGain);
-      noiseG
+      noise
