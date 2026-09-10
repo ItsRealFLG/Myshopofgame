@@ -322,8 +322,43 @@
     padding: 0 20px 40px;
   }
 
-  .download-section {
+  /* ===== НОВЫЙ ТЕКСТ ПРИ СКРОЛЛЕ ===== */
+  .scroll-reveal {
     margin-top: 20vh;
+    max-width: 720px;
+    padding: 0 30px;
+    text-align: center;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.95),
+                 0 0 25px rgba(0, 229, 255, 0.35);
+
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1.2s ease, transform 1.2s ease;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .scroll-reveal span {
+    display: block;
+    margin-top: 10px;
+    background: linear-gradient(90deg, #00e5ff, #ff00e6, #00ffa3, #00e5ff);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    animation: gradientShift 6s linear infinite;
+  }
+
+  .download-section {
+    margin-top: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -679,6 +714,13 @@
   </div>
 
   <div class="content">
+
+    <!-- ✅ НОВЫЙ ТЕКСТ, ПОЯВЛЯЕТСЯ ПРИ ПРОКРУТКЕ -->
+    <div class="scroll-reveal" id="scrollReveal">
+      Этот сайт был придуман командой FFM, и тут ты можешь следить за каждым новым приложением, которое выйдет!
+      <span>Ну а пока советуем посмотреть наши первые игры!</span>
+    </div>
+
     <div class="download-section">
       <div class="download-header">
         <div class="download-title">Змейка</div>
@@ -689,7 +731,6 @@
         Это самая первая разработка в нашей компании — Змейка!
       </div>
 
-      <!-- ✅ ССЫЛКА УЖЕ ЗАМЕНЕНА НА ТВОЁ ОБЛАКО MAIL.RU -->
       <a class="btn-download"
          href="https://cloud.mail.ru/public/Kt3m/cf9JrqiJN"
          target="_blank"
@@ -732,6 +773,22 @@
   </div>
 
 <script>
+  /* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ТЕКСТА ПРИ СКРОЛЛЕ ===== */
+  const scrollReveal = document.getElementById('scrollReveal');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.2
+  });
+
+  observer.observe(scrollReveal);
+
+  /* ===== Бургер-меню ===== */
   const burger = document.getElementById('burger');
   const sideMenu = document.getElementById('sideMenu');
   const menuBackdrop = document.getElementById('menuBackdrop');
@@ -748,6 +805,7 @@
     menuBackdrop.classList.remove('show');
   });
 
+  /* ===== Игра "Кликер" ===== */
   const gameModal = document.getElementById('gameModal');
   const openGameBtn = document.getElementById('openGame');
   const closeGameBtn = document.getElementById('closeGame');
