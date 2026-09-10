@@ -16,7 +16,7 @@
     scroll-behavior: smooth;
   }
 
-  /* ===== СЛОЙ 1: закатное небо (самый нижний) ===== */
+  /* ===== СЛОЙ 1: закатное небо ===== */
   .bg-image {
     position: fixed;
     inset: 0;
@@ -43,7 +43,6 @@
     overflow: hidden;
   }
 
-  /* Дальние горы — светлые, розово-белые (освещённые закатом) */
   .bg-mountains::before {
     content: '';
     position: absolute;
@@ -60,31 +59,14 @@
       #6b3d68 100%
     );
     clip-path: polygon(
-      0% 100%,
-      0% 55%,
-      6% 38%,
-      12% 48%,
-      18% 28%,
-      24% 42%,
-      30% 22%,
-      36% 38%,
-      42% 18%,
-      48% 30%,
-      54% 12%,
-      60% 26%,
-      66% 20%,
-      72% 34%,
-      78% 24%,
-      84% 42%,
-      90% 32%,
-      96% 48%,
-      100% 40%,
-      100% 100%
+      0% 100%, 0% 55%, 6% 38%, 12% 48%, 18% 28%, 24% 42%,
+      30% 22%, 36% 38%, 42% 18%, 48% 30%, 54% 12%, 60% 26%,
+      66% 20%, 72% 34%, 78% 24%, 84% 42%, 90% 32%, 96% 48%,
+      100% 40%, 100% 100%
     );
     filter: blur(1.5px);
   }
 
-  /* Ближние горы — тёмные, в тени */
   .bg-mountains::after {
     content: '';
     position: absolute;
@@ -100,27 +82,13 @@
       #080412 100%
     );
     clip-path: polygon(
-      0% 100%,
-      0% 48%,
-      8% 32%,
-      14% 46%,
-      22% 22%,
-      28% 42%,
-      36% 18%,
-      44% 38%,
-      50% 14%,
-      58% 32%,
-      64% 20%,
-      72% 40%,
-      80% 24%,
-      88% 44%,
-      95% 28%,
-      100% 46%,
-      100% 100%
+      0% 100%, 0% 48%, 8% 32%, 14% 46%, 22% 22%, 28% 42%,
+      36% 18%, 44% 38%, 50% 14%, 58% 32%, 64% 20%, 72% 40%,
+      80% 24%, 88% 44%, 95% 28%, 100% 46%, 100% 100%
     );
   }
 
-  /* ===== СЛОЙ 3: лёгкое затемнение ===== */
+  /* ===== СЛОЙ 3: затемнение ===== */
   .overlay {
     position: fixed;
     inset: 0;
@@ -376,6 +344,15 @@
     to   { opacity: 1; transform: translateY(0); }
   }
 
+  /* ===== НОВЫЙ БЛОК: Змейка + Дата в одну линию ===== */
+  .download-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
   .download-title {
     font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 800;
@@ -387,6 +364,15 @@
     color: transparent;
     text-shadow: 0 0 35px rgba(0, 229, 255, 0.55);
     animation: gradientShift 5s linear infinite;
+  }
+
+  .download-date {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
   }
 
   .download-subtitle {
@@ -694,7 +680,12 @@
 
   <div class="content">
     <div class="download-section">
-      <div class="download-title">Змейка</div>
+      <!-- Змейка + дата в одну линию -->
+      <div class="download-header">
+        <div class="download-title">Змейка</div>
+        <div class="download-date">Создано 10.09.2026</div>
+      </div>
+
       <div class="download-subtitle">
         Это самая первая разработка в нашей компании — Змейка!
       </div>
