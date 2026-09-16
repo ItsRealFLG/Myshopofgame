@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>FFM — Магазин приложений</title>
+<title>ItsREaLFFm SHoP</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,16 +21,15 @@
     position: fixed;
     inset: 0;
     z-index: -3;
-    background-image: url('https://imgur.com/a/OoTUYOj');
+    background-image: url('https://i.imgur.com/b6tjVmv.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;   /* ← картинка НЕ двигается */
-    filter: blur(3px) brightness(0.85);  /* ← лёгкое размытие + чуть темнее */
-    transform: scale(1.05);          /* ← чтобы края не просвечивали после blur */
+    background-attachment: fixed;
+    filter: blur(3px) brightness(0.85);
+    transform: scale(1.05);
   }
 
-  /* ===== Затемнение поверх картинки ===== */
   .overlay {
     position: fixed;
     inset: 0;
@@ -42,6 +41,67 @@
       rgba(0, 0, 0, 0.7) 100%
     );
     pointer-events: none;
+  }
+
+  /* ===== ПЕРЕЛИВАЮЩИЕСЯ БЕЛЫЕ ПОЛОСЫ ===== */
+  .shine-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  /* Полоса 1 — широкая, проходит слева направо */
+  .shine-overlay::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 60%;
+    height: 200%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.02) 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      rgba(255, 255, 255, 0.02) 70%,
+      transparent 100%
+    );
+    transform: rotate(20deg);
+    animation: shine1 7s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Полоса 2 — узкая, с задержкой */
+  .shine-overlay::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -80%;
+    width: 25%;
+    height: 200%;
+    background: linear-gradient(
+      100deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 100%
+    );
+    transform: rotate(20deg);
+    animation: shine2 7s cubic-bezier(0.4, 0, 0.2, 1) 0.3s infinite;
+  }
+
+  @keyframes shine1 {
+    0%   { left: -80%; opacity: 0; }
+    10%  { opacity: 1; }
+    60%  { opacity: 1; }
+    100% { left: 130%; opacity: 0; }
+  }
+
+  @keyframes shine2 {
+    0%   { left: -80%; opacity: 0; }
+    10%  { opacity: 1; }
+    55%  { opacity: 0.9; }
+    100% { left: 130%; opacity: 0; }
   }
 
   button, a {
@@ -78,9 +138,7 @@
     transform: scale(1.08);
   }
 
-  .burger:active {
-    transform: scale(0.95);
-  }
+  .burger:active { transform: scale(0.95); }
 
   .burger span {
     display: block;
@@ -199,7 +257,7 @@
 
   .menu-backdrop.show { opacity: 1; visibility: visible; }
 
-  /* ===== Первый экран (поверх фона) ===== */
+  /* ===== Первый экран ===== */
   .welcome {
     position: relative;
     display: flex;
@@ -536,11 +594,11 @@
       radial-gradient(circle at 80% 70%, rgba(255, 0, 230, 0.08), transparent 60%);
   }
 
-  /* ===== СТИКМАН-КАРТИНКА ===== */
+  /* ===== СТИКМАН (SVG) ===== */
   .stickman {
     position: absolute;
     width: 60px;
-    height: 100px;
+    height: 90px;
     cursor: pointer;
     user-select: none;
     pointer-events: auto;
@@ -550,12 +608,7 @@
                 transform 0.3s ease,
                 filter 0.3s ease;
 
-    background-image: url('https://i.imgur.com/ЗАМЕНИ_НА_ССЫЛКУ.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-
-    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.8));
+    filter: drop-shadow(0 0 10px rgba(0, 229, 255, 0.9));
     animation: stickmanIdle 2.5s ease-in-out infinite;
   }
 
@@ -564,9 +617,15 @@
     50%      { transform: translateY(-6px); }
   }
 
+  .stickman svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
   .stickman:hover {
     transform: scale(1.15);
-    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 1));
+    filter: drop-shadow(0 0 22px rgba(0, 229, 255, 1));
   }
 
   .stickman:active {
@@ -669,6 +728,9 @@
   <div class="bg-image"></div>
   <div class="overlay"></div>
 
+  <!-- ПЕРЕЛИВАЮЩИЕСЯ БЕЛЫЕ ПОЛОСЫ -->
+  <div class="shine-overlay"></div>
+
   <div class="burger" id="burger">
     <span></span>
     <span></span>
@@ -733,14 +795,23 @@
   <div class="game-modal" id="gameModal">
     <div class="game-window">
       <div class="game-header">
-        <h3>🎮 Кликер — поймай человечка</h3>
+        <h3>🎮 Кликер — поймай стикмана</h3>
         <button class="game-close" id="closeGame">✕</button>
       </div>
       <div class="game-area" id="gameArea">
         <div class="score-panel">
           Клики: <span class="score-value" id="scoreValue">0</span> / 100
         </div>
-        <div class="stickman" id="stickman"></div>
+        <div class="stickman" id="stickman">
+          <svg viewBox="0 0 46 66" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="23" cy="11" r="9" fill="none" stroke="#00e5ff" stroke-width="3"/>
+            <line x1="23" y1="20" x2="23" y2="42" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="23" y1="27" x2="6" y2="38" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="23" y1="27" x2="40" y2="38" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="23" y1="42" x2="10" y2="62" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+            <line x1="23" y1="42" x2="36" y2="62" stroke="#00e5ff" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
         <canvas id="fireworksCanvas"></canvas>
         <div class="victory-text" id="victoryText">ПОБЕДА!</div>
         <div class="win-msg" id="winMsg">🎉 Ты набрал 100 кликов! 🎉</div>
