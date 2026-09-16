@@ -371,6 +371,7 @@
     flex-direction: column;
     align-items: center;
     padding: 0 20px 40px;
+    gap: 5vh;
   }
 
   .scroll-reveal {
@@ -412,7 +413,6 @@
   }
 
   .download-section {
-    margin-top: 8vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -426,6 +426,7 @@
     border: 1px solid rgba(255, 255, 255, 0.15);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
     animation: cardIn 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+    max-width: 620px;
   }
 
   @keyframes cardIn {
@@ -516,6 +517,29 @@
     border-color: #ffffff;
     box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9),
                 0 0 50px rgba(255, 255, 255, 0.7);
+  }
+
+  /* Оранжевый вариант кнопки для Мега App */
+  .btn-download.orange {
+    background: linear-gradient(135deg, #ff6b1a, #cc4400);
+    box-shadow: 0 0 25px rgba(255, 120, 20, 0.55),
+                inset 0 0 15px rgba(255, 255, 255, 0.08);
+  }
+
+  .btn-download.orange:hover {
+    background: linear-gradient(135deg, #ff8033, #dd5500);
+    box-shadow: 0 0 45px rgba(255, 140, 40, 0.9),
+                inset 0 0 20px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Заголовок Мега App — оранжевый градиент */
+  .download-title.orange {
+    background: linear-gradient(90deg, #ffcc00, #ff6b1a, #ffcc00);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 35px rgba(255, 140, 20, 0.55);
   }
 
   .footer {
@@ -623,7 +647,6 @@
       radial-gradient(circle at 80% 70%, rgba(255, 0, 230, 0.08), transparent 60%);
   }
 
-  /* ===== СТИКМАН (SVG) ===== */
   .stickman {
     position: absolute;
     width: 60px;
@@ -757,7 +780,6 @@
   <div class="bg-image"></div>
   <div class="overlay"></div>
 
-  <!-- ВОЛНИСТЫЕ КРАСНО-ЗЕЛЁНЫЕ КОНТУРЫ -->
   <div class="shine-overlay"></div>
 
   <div class="burger" id="burger">
@@ -797,6 +819,7 @@
       <span>Ну а пока советуем посмотреть наши первые игры!</span>
     </div>
 
+    <!-- ОКНО 1: Змейка -->
     <div class="download-section">
       <div class="download-header">
         <div class="download-title">Змейка</div>
@@ -813,7 +836,25 @@
          rel="noopener noreferrer">
         Скачать
       </a>
+    </div>
 
+    <!-- ОКНО 2: Мега App -->
+    <div class="download-section">
+      <div class="download-header">
+        <div class="download-title orange">Мега App</div>
+        <div class="download-date">Создано 16.09.2026</div>
+      </div>
+
+      <div class="download-subtitle">
+        Это всё что тебе надо — тут есть калькулятор, курс валют, мини-игра и увлекательная тапалка. Советуем попробовать!
+      </div>
+
+      <a class="btn-download orange"
+         href="https://cloud.mail.ru/public/Kt3m/cf9JrqiJN"
+         target="_blank"
+         rel="noopener noreferrer">
+        Скачать
+      </a>
     </div>
 
     <footer class="footer">
