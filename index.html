@@ -16,35 +16,32 @@
     scroll-behavior: smooth;
   }
 
-  /* ===== ФОН: картинка с горами ===== */
+  /* ===== ФОН: картинка с горами (зафиксирована) ===== */
   .bg-image {
     position: fixed;
     inset: 0;
     z-index: -3;
-    background-image: url('https://imgur.com/n4yC6dW');
+    background-image: url('https://imgur.com/a/OoTUYOj');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed;   /* ← картинка НЕ двигается */
+    filter: blur(3px) brightness(0.85);  /* ← лёгкое размытие + чуть темнее */
+    transform: scale(1.05);          /* ← чтобы края не просвечивали после blur */
   }
 
+  /* ===== Затемнение поверх картинки ===== */
   .overlay {
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.15) 40%,
-      rgba(0, 0, 0, 0.45) 75%,
-      rgba(0, 0, 0, 0.75) 100%
+    background: radial-gradient(
+      circle at center,
+      rgba(0, 0, 0, 0.15) 0%,
+      rgba(0, 0, 0, 0.35) 60%,
+      rgba(0, 0, 0, 0.7) 100%
     );
     pointer-events: none;
-  }
-
-  /* ===== ПЛАВНЫЕ АНИМАЦИИ ДЛЯ ВСЕГО ===== */
-  * {
-    -webkit-tap-highlight-color: transparent;
   }
 
   button, a {
@@ -126,7 +123,6 @@
     color: rgba(255,255,255,0.7);
     margin-bottom: 10px;
     text-align: center;
-    animation: fadeSlide 0.6s ease both;
   }
 
   .menu-btn {
@@ -172,7 +168,7 @@
     transform: translateX(-2px) scale(0.98);
   }
 
-  .menu-btn.disabled { opacity: 0.55; cursor: not-allowed; position: relative; animation: none; opacity: 0.55; }
+  .menu-btn.disabled { opacity: 0.55; cursor: not-allowed; position: relative; }
   .menu-btn.disabled:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.15);
@@ -203,7 +199,7 @@
 
   .menu-backdrop.show { opacity: 1; visibility: visible; }
 
-  /* ===== Первый экран ===== */
+  /* ===== Первый экран (поверх фона) ===== */
   .welcome {
     position: relative;
     display: flex;
@@ -213,6 +209,7 @@
     min-height: 100vh;
     padding: 20px;
     text-align: center;
+    z-index: 5;
     opacity: 0;
     animation: welcomeIn 2.5s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
   }
@@ -548,14 +545,12 @@
     user-select: none;
     pointer-events: auto;
 
-    /* плавное движение */
     transition: left 1.6s cubic-bezier(0.34, 1.2, 0.64, 1),
                 top 1.6s cubic-bezier(0.34, 1.2, 0.64, 1),
                 transform 0.3s ease,
                 filter 0.3s ease;
 
-    /* сама картинка */
-    background-image: url('https://www.istockphoto.com/ru/%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8/stick-man');
+    background-image: url('https://i.imgur.com/ЗАМЕНИ_НА_ССЫЛКУ.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
